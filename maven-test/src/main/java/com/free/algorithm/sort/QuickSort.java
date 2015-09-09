@@ -67,4 +67,9 @@ public class QuickSort {
 
     }
 
+    public static int sort2() {
+
+        return 0;
+    }
+
 }
