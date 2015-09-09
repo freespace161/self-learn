@@ -1,4 +1,4 @@
-package com.free.algorithm.sort;
+package com.freetest.algorithm.sort;
 
 import scala.actors.threadpool.Arrays;
 
