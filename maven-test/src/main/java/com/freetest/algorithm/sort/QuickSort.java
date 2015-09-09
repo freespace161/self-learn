@@ -1,7 +1,5 @@
 package com.freetest.algorithm.sort;
 
-import scala.actors.threadpool.Arrays;
-
 /**
  * 类QuickSort.java的实现描述：TODO 类实现描述
  * 
