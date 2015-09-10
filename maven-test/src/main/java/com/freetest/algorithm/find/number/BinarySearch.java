@@ -17,6 +17,7 @@ public class BinarySearch {
     public static void main(String[] args) {
         int a[] = new int[] { 10, 18, 19, 30, 70 };
         System.out.println(search(70, a));
+        System.out.println(search(20, a));
     }
 
     /**
@@ -40,6 +41,6 @@ public class BinarySearch {
             }
         }
 
-        return -1;
+        return -start;
     }
 }
