@@ -12,17 +12,8 @@ public class QuickSort {
      */
     public static void main(String[] args) {
 
-        int a[] = new int[10];
-        a[0] = 8;
-        a[1] = 1;
-        a[2] = 7;
-        a[3] = 23;
-        a[4] = 12;
-        a[5] = 3;
-        a[6] = 9;
-        a[7] = 13;
-        a[8] = 25;
-        a[9] = 10;
+        int a[] = new int[] { 8, 1, 7, 23, 12, 3, 9, 13, 25, 10 };
+
         partition(a, 0, 9);
         for (int tmp : a) {
             System.out.print(tmp + "\t");
