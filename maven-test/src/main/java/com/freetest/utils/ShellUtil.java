@@ -19,7 +19,7 @@ public class ShellUtil {
     /**
      * 10M
      */
-    public static int MAX_SIZE = 10 * 1024 * 1024;
+    private static int MAX_SIZE = 10 * 1024 * 1024;
     private static final String ERR_MSG = "output was too big,it was out of max (" + MAX_SIZE + ") memeory ";
 
     /**
@@ -62,7 +62,7 @@ public class ShellUtil {
         final Map<String, StringBuilder> result = new HashMap<String, StringBuilder>();
         final BufferedReader ibr = new BufferedReader(new InputStreamReader(process.getInputStream(), charset));
         final BufferedReader ebr = new BufferedReader(new InputStreamReader(process.getErrorStream(), charset));
-        new Thread(new Runnable() {
+        Thread out = new Thread(new Runnable() {
             @Override
             public void run() {
                 String line = "";
@@ -85,8 +85,8 @@ public class ShellUtil {
                 }
 
             }
-        }).start();
-        new Thread(new Runnable() {
+        });
+        Thread err = new Thread(new Runnable() {
             @Override
             public void run() {
                 String line = "";
@@ -109,15 +109,14 @@ public class ShellUtil {
                 }
 
             }
-        }).start();
+        });
+        out.start();
+        err.start();
         int exitVal = process.waitFor();
+
+        out.join();
+        err.join();
         result.put(EXIT_CODE, new StringBuilder(exitVal + ""));
-        while (true) {
-            if (result.containsKey(STDOUT) && result.containsKey(STDERR)) {
-                break;
-            }
-        }
         return result;
     }
-
 }
