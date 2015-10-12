@@ -31,8 +31,16 @@ public class LiftOff implements Runnable {
     @Override
     public void run() {
         while (countDown-- > 0) {
-            System.out.print(status());
-            Thread.yield();
+            System.out.println(status());
+            // yield 与sleep都不释放锁
+            // yield 释放cpu 直接进入就绪状态,等线程调度器调度重新进入运行状态
+            // Thread.yield();
+            try {
+                // sleep 释放cpu 进入->blocked 状态，blocked 状态结束后进入->就绪状态
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
     }
