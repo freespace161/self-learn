@@ -21,7 +21,7 @@ public class Entrance implements Runnable {
     private static List<Entrance> list = new ArrayList<Entrance>();
 
     private String entranceId;
-    private static boolean stop = false;
+    private volatile static boolean stop = false;
 
     public Entrance(String id) {
         entranceId = id;
